@@ -5,6 +5,7 @@ import { StatusBadge } from "./StatusBadge";
 import { Waveform } from "./Waveform";
 import { AudioPulse } from "./AudioPulse";
 import { Mic, Cpu, Volume2, MonitorSmartphone, MessageSquare, Activity, Database, Shield, Network, Eye, GitBranch } from "lucide-react";
+import { FlowParticles } from "./FlowParticles";
 
 // Helpers — derive UI state from simulation stage
 const STAGE_ORDER: SystemStage[] = [
@@ -52,21 +53,11 @@ export function ArchitectureView() {
         </div>
       </div>
 
-      {/* SVG flow lines */}
+      {/* Animated flow particle bus */}
       <div className="relative px-6 py-8">
-        <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
-          {/* B → A audio */}
-          <line x1="22%" y1="50%" x2="42%" y2="50%" stroke="hsl(var(--primary))" strokeWidth="1.2"
-            className={audioFlow ? "flow-line opacity-90" : "opacity-25"} />
-          {/* A → B response */}
-          <line x1="42%" y1="56%" x2="22%" y2="56%" stroke="hsl(var(--accent))" strokeWidth="1.2"
-            className={responseFlow ? "flow-line opacity-90" : "opacity-20"} />
-          {/* A ↔ C control */}
-          <line x1="58%" y1="50%" x2="78%" y2="50%" stroke="hsl(var(--success))" strokeWidth="1.2"
-            className={controlFlow ? "flow-line opacity-90" : "opacity-30"} />
-          <line x1="58%" y1="56%" x2="78%" y2="56%" stroke="hsl(var(--success))" strokeWidth="1.2"
-            className={controlFlow ? "flow-line opacity-70" : "opacity-15"} />
-        </svg>
+        <div className="absolute inset-0 hidden lg:block">
+          <FlowParticles />
+        </div>
 
         <div className="grid grid-cols-12 gap-6 relative">
           {/* NODE B */}
