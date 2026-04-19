@@ -1,105 +1,141 @@
+@import url('https://rsms.me/inter/inter.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* MOMO Design System — distributed offline AI assistant */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Surfaces */
+    --background: 210 30% 6%;          /* #0B0F14 */
+    --foreground: 220 13% 91%;         /* #E5E7EB */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --surface-1: 220 26% 12%;          /* #111827 */
+    --surface-2: 217 19% 20%;          /* #1F2937 */
+    --surface-3: 217 19% 27%;
+    --hairline: 217 19% 18%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --card: 220 26% 12%;
+    --card-foreground: 220 13% 91%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --popover: 220 26% 12%;
+    --popover-foreground: 220 13% 91%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Brand / signal */
+    --primary: 217 91% 60%;            /* Data flow #3B82F6 */
+    --primary-foreground: 210 30% 6%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --secondary: 217 19% 20%;
+    --secondary-foreground: 220 13% 91%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 217 19% 18%;
+    --muted-foreground: 220 9% 65%;    /* #9CA3AF */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --accent: 258 90% 66%;             /* AI processing #8B5CF6 */
+    --accent-foreground: 210 30% 6%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive: 0 84% 60%;          /* #EF4444 */
+    --destructive-foreground: 0 0% 100%;
 
-    --radius: 0.5rem;
+    --success: 142 71% 45%;            /* #22C55E */
+    --warning: 38 92% 50%;
 
-    --sidebar-background: 0 0% 98%;
+    --border: 217 19% 18%;
+    --input: 217 19% 20%;
+    --ring: 217 91% 60%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    --radius: 0.625rem;
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Pipeline glows */
+    --glow-data: 217 91% 60%;
+    --glow-ai: 258 90% 66%;
+    --glow-success: 142 71% 45%;
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    --grid-line: 217 19% 14%;
 
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-background: 220 26% 10%;
+    --sidebar-foreground: 220 13% 91%;
+    --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 217 19% 16%;
+    --sidebar-accent-foreground: 220 13% 91%;
+    --sidebar-border: 217 19% 18%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
+  * { @apply border-border; }
+  html, body, #root { height: 100%; }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: hsl(var(--primary) / 0.35); }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  }
+  .text-data { color: hsl(var(--primary)); }
+  .text-ai { color: hsl(var(--accent)); }
+  .text-success { color: hsl(var(--success)); }
+  .text-error { color: hsl(var(--destructive)); }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(hsl(var(--grid-line)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--grid-line)) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .bg-radial-fade {
+    background:
+      radial-gradient(ellipse at 50% 0%, hsl(var(--primary) / 0.08), transparent 60%),
+      radial-gradient(ellipse at 50% 100%, hsl(var(--accent) / 0.06), transparent 60%);
+  }
+
+  .glow-data { box-shadow: 0 0 24px -4px hsl(var(--primary) / 0.55); }
+  .glow-ai { box-shadow: 0 0 24px -4px hsl(var(--accent) / 0.55); }
+  .glow-success { box-shadow: 0 0 24px -4px hsl(var(--success) / 0.55); }
+
+  .surface-1 { background: hsl(var(--surface-1)); }
+  .surface-2 { background: hsl(var(--surface-2)); }
+  .hairline { border-color: hsl(var(--hairline)); }
+
+  /* dashed pipeline line */
+  .flow-line {
+    stroke-dasharray: 4 6;
+    animation: flow-dash 1.6s linear infinite;
+  }
+  @keyframes flow-dash {
+    to { stroke-dashoffset: -20; }
+  }
+
+  .pulse-soft {
+    animation: pulse-soft 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.04); }
+  }
+
+  .breathe {
+    animation: breathe 4s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+
+  .scan-bar {
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.6), transparent);
+    animation: scan 2.2s linear infinite;
+  }
+  @keyframes scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
   }
 }
